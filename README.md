@@ -1,4 +1,4 @@
-# Reconnaissance faciale — Projet prêt à publier
+# Reconnaissance faciale 
 
 Application de reconnaissance faciale (OpenCV + TensorFlow/Keras) avec interface web Flask pour le streaming vidéo et la journalisation des personnes reconnues.
 
@@ -76,24 +76,3 @@ Les personnes reconnues du jour sont enregistrées dans `static/recognized_faces
   - Essayer `RF_CAMERA_INDEX=1` (ou 2)
 - Installation TensorFlow:
   - Le projet utilise `tensorflow-cpu==2.12.0` (compatible Python 3.11). Si souci GPU, rester sur la version CPU.
-
-## Publication GitHub
-- Éviter de pousser l’intégralité des images (taille). Garder une petite portion d’exemple et ajouter un lien/notice.
-- Garder: scripts `.py`, `requirements.txt`, `README.md`, `run_tests.py`, `templates/`, `static/` (vide ou avec fichier .gitkeep), éventuellement `face_recognition_model.h5` et `label_dict.npy` si leur taille le permet.
-
-## Structure du dépôt (recommandée)
-- `8Flask.py`, `10.py`, `1bwebcam2.py`, `2recuperationface.py`, `2split_dataset.py`, `3-1train_model.py`, `evaluate_model.py`, `run_tests.py`
-- `templates/` (HTML)
-- `static/` (logs, images générées comme `confusion_matrix.png`)
-- `requirements.txt`, `README.md`, `.gitignore`
-
-## Checklist avant envoi
-- [ ] `python run_tests.py` → All tests passed
-- [ ] `python 8Flask.py` → streaming OK
-- [ ] `python evaluate_model.py` → métriques et `static/confusion_matrix.png` générés
-
-## Licence
-Définir la licence souhaitée (ex: MIT) avant la publication.
-
-
-# Reconnaissance-faciale
