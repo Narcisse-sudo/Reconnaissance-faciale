@@ -1,0 +1,28 @@
+# Environment and caches
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Large or generated artifacts
+*.h5
+*.npy
+*.v2
+*.mp4
+*.avi
+HubertineC*.png
+
+# Datasets (keep your own copy locally)
+data/**
+dataseteeia/**
+dataseteeia00/**
+raw/**
+logs/**
+
+# Runtime logs
+static/recognized_faces_*.txt
+
+# VSCode/Cursor
+.vscode/
+.cursor/
+

@@ -47,6 +47,15 @@ Exécute des imports en mode DRY_RUN pour vérifier que tout est exécutable san
 python run_tests.py
 ```
 
+## Évaluation du modèle
+Mesure l'accuracy, le rapport precision/recall/F1 par classe et génère une matrice de confusion:
+```powershell
+python evaluate_model.py
+```
+Sorties:
+- Résultats chiffrés dans le terminal
+- Image: `static/confusion_matrix.png`
+
 ## Journalisation
 Les personnes reconnues du jour sont enregistrées dans `static/recognized_faces_YYYY-MM-DD.txt`.
 
@@ -71,6 +80,20 @@ Les personnes reconnues du jour sont enregistrées dans `static/recognized_faces
 ## Publication GitHub
 - Éviter de pousser l’intégralité des images (taille). Garder une petite portion d’exemple et ajouter un lien/notice.
 - Garder: scripts `.py`, `requirements.txt`, `README.md`, `run_tests.py`, `templates/`, `static/` (vide ou avec fichier .gitkeep), éventuellement `face_recognition_model.h5` et `label_dict.npy` si leur taille le permet.
+
+## Structure du dépôt (recommandée)
+- `8Flask.py`, `10.py`, `1bwebcam2.py`, `2recuperationface.py`, `2split_dataset.py`, `3-1train_model.py`, `evaluate_model.py`, `run_tests.py`
+- `templates/` (HTML)
+- `static/` (logs, images générées comme `confusion_matrix.png`)
+- `requirements.txt`, `README.md`, `.gitignore`
+
+## Checklist avant envoi
+- [ ] `python run_tests.py` → All tests passed
+- [ ] `python 8Flask.py` → streaming OK
+- [ ] `python evaluate_model.py` → métriques et `static/confusion_matrix.png` générés
+
+## Licence
+Définir la licence souhaitée (ex: MIT) avant la publication.
 
 
 # Reconnaissance-faciale

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <title>Document</title>
+    <script>
+        // Function to fetch and display the recognized faces
+        async function fetchRecognizedFaces() {
+            try {
+                // Adjust the path to match where your file is served from your server
+                const today = new Date().toISOString().slice(0,10);
+                const response = await fetch(`/static/recognized_faces_${today}.txt`);
+                if (!response.ok) throw new Error('Network response was not ok');
+                
+                // Get the text content from the response
+                const text = await response.text();
+
+                // Find the element to update
+                const facesList = document.getElementById('faces-list');
+                
+                // Split the text by new lines and create list items
+                const lines = text.split('\n').filter(line => line.trim() !== '');
+                facesList.innerHTML = lines.map(line => `<li>${line}</li>`).join('');
+            } catch (error) {
+                console.error('Error fetching the recognized faces:', error);
+            }
+        }
+
+        // Call the function when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            // Fetch the recognized faces initially
+            fetchRecognizedFaces();
+
+            // Set up interval to refresh the content every second (1000 milliseconds)
+            setInterval(fetchRecognizedFaces, 1000);
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <!-- Première rangée : Streaming vidéo à gauche -->
+        <div class="col-lg-7">
+            <h3 class="mt-5">Détecteur</h3>
+            <img src="{{ url_for('video_feed') }}" width="100%">
+        </div>
+        <!-- Deuxième rangée : Noms reconnus à droite -->
+        <div class="col-lg-5">
+            <h4 class="mt-5">Personnes reconnues aujourd'hui :</h4>
+            <ul id="faces-list">
+                <!-- La liste des personnes reconnues sera insérée ici par JavaScript -->
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
